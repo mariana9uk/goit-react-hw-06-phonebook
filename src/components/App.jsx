@@ -3,6 +3,7 @@ import { ContactsList } from './ContactsList';
 import { Filter } from './Filter';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 const savedContacts = window.localStorage.getItem('contact');
 const getSavedContacts = () => {
 
@@ -11,6 +12,7 @@ const getSavedContacts = () => {
   }
 };
 export const App = () => {
+  const contactsR = useSelector(state=>state.contactsR)
   const [contacts, setContacts] = useState(getSavedContacts);
   const [filter, setFilter] = useState('');
 
@@ -63,8 +65,9 @@ export const App = () => {
       <h1>Phonebook</h1>
       <ContactForm onAdd={addContact} />
       <h2>Contacts</h2>
+
       <Filter value={filter} onChange={handleFilterChange} />
-      <ContactsList contacts={filteredContacts} onDelete={removeContact} />
+      <ContactsList contacts={contactsR} onDelete={removeContact} />
     </div>
   );
 };
