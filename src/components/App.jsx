@@ -12,8 +12,9 @@ const getSavedContacts = () => {
   }
 };
 export const App = () => {
-  const contactsR = useSelector(state=>state.contactsR)
+
   const [contacts, setContacts] = useState(getSavedContacts);
+  contacts = useSelector(state=>state.contacts)
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export const App = () => {
       <h2>Contacts</h2>
 
       <Filter value={filter} onChange={handleFilterChange} />
-      <ContactsList contacts={contactsR} onDelete={removeContact} />
+      <ContactsList contacts={contacts} onDelete={removeContact} />
     </div>
   );
 };

@@ -1,10 +1,10 @@
 const initialState = {
-    contactsR: [],
-    filtersR: {},
+    contacts: [],
+    filter: {},
   };
   export const contactsReduser=(state=initialState, action)=>{
 switch (action.type) {
-    case value:
+    case "":
         
         break;
 
@@ -15,7 +15,7 @@ switch (action.type) {
   }
   export const filtersReducer =(state=initialState, action)=>{
 switch (action.type) {
-    case value:
+    case "":
         
         break;
 
