@@ -14,7 +14,7 @@ switch (action.type) {
 
   }
   export const filtersReducer =(state=initialState, action)=>{
-switch (key) {
+switch (action.type) {
     case value:
         
         break;
