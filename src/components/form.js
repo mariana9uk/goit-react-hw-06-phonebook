@@ -7,6 +7,8 @@ import {
 } from './formStyled';
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/actions';
 const validSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -24,7 +26,15 @@ const validSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ContactForm = ({ onAdd }) => {
+
+export const ContactForm = () => {
+  const dispatch= useDispatch()
+  const handleSubmit = event=>{
+    event.preventDefault();
+    const form = event.target;
+    dispatch(addContact(form.elements.target.value));
+  form.reset()
+  }
   return (
     <div>
    
@@ -34,11 +44,12 @@ export const ContactForm = ({ onAdd }) => {
           number: '',
         }}
         validationSchema={validSchema}
-        onSubmit={(values, actions) => {
-          
-          onAdd({ ...values, id: nanoid() });
-          actions.resetForm();
-        }}
+        onSubmit={
+        handleSubmit
+          //   () => {dispatch(addContact)
+          // // onAdd({ ...values, id: nanoid() });
+          // actions.resetForm();}
+        }
       >
         <StyledForm>
           <label>

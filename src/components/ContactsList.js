@@ -1,8 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
 import {StyledContacts} from "./ContactsStyleed"
+import { removeContact } from "redux/actions";
 
-export const ContactsList  = ({contacts, onDelete})=>{
+  
+
+export const ContactsList  = ()=>{
+   const dispatch = useDispatch()
+   const contacts = useSelector(state=>state.contacts)
    const contactsListItems = contacts.map(contact=>(
-      <li key={contact.id} >{contact.name}:{contact.number}<button type="button" onClick={()=>{onDelete(contact.id)}}>Delete</button></li>
+      <li key={contact.id} >{contact.name}:{contact.number}<button type="button" onClick={()=>dispatch(removeContact(contact.id))}>Delete</button></li>
    ))
    return(
       <StyledContacts>
@@ -11,4 +17,4 @@ export const ContactsList  = ({contacts, onDelete})=>{
    ) 
 }
 
- 
+// onClick={()=>{onDelete(contact.id)}
