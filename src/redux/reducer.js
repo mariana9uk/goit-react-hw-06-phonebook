@@ -1,22 +1,22 @@
 import { createReducer, nanoid } from "@reduxjs/toolkit";
-import { addContact, removeContact } from "./actions";
 
 
-  const savedContacts = window.localStorage.getItem('contact');
-  const getSavedContacts = () => {
-      if (savedContacts) {
-      return JSON.parse(savedContacts);
-    }
-  };
-  const contactsLS = getSavedContacts()
+
+  // const savedContacts = window.localStorage.getItem('contact');
+  // const getSavedContacts = () => {
+  //     if (savedContacts) {
+  //     return JSON.parse(savedContacts);
+  //   }
+  // };
+  // const contactsLS = getSavedContacts()
   const initialState = {
-    contacts: [...contactsLS],
+    // contacts: [...contactsLS],
     filter: {},
   };
-export const contactsReduser =createReducer(initialState.contacts, {
-  [addContact]:(state, action)=>[...state, action.payload],
-  [removeContact]:(state, action)=>[...state, state.filter(contact=>contact.id!==action.payload)]
-})
+// export const contactsReduser =createReducer(initialState.contacts, {
+//   [addContact]:(state, action)=>[...state, action.payload],
+//   [removeContact]:(state, action)=>[...state, state.filter(contact=>contact.id!==action.payload)]
+// })
 
 
 //   export const contactsRedusers=(state=initialState, action)=>{

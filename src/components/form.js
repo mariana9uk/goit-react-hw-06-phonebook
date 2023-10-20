@@ -1,4 +1,4 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage} from 'formik';
 import {
   StyledForm,
   StyledInput,
@@ -8,7 +8,9 @@ import {
 import * as Yup from 'yup';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from 'redux/contactsSlice';
+import { act } from '@testing-library/react';
+
 const validSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -29,12 +31,12 @@ const validSchema = Yup.object().shape({
 
 export const ContactForm = () => {
   const dispatch= useDispatch()
-  const handleSubmit = event=>{
-    event.preventDefault();
-    const form = event.target;
-    dispatch(addContact(form.elements.target.value));
-  form.reset()
-  }
+
+  const handleSubmit = (values, formikBag) => {
+    dispatch(addContact(values));
+    formikBag.resetForm()
+  };
+
   return (
     <div>
    
@@ -44,12 +46,8 @@ export const ContactForm = () => {
           number: '',
         }}
         validationSchema={validSchema}
-        onSubmit={
-        handleSubmit
-          //   () => {dispatch(addContact)
-          // // onAdd({ ...values, id: nanoid() });
-          // actions.resetForm();}
-        }
+        onSubmit={handleSubmit}
+       
       >
         <StyledForm>
           <label>
@@ -62,7 +60,7 @@ export const ContactForm = () => {
             <StyledInput type="tel" name="number" placeholder="Type number" />
             <ErrorMessage component={ErrorMessageStyled} name="number" />
           </label>
-          <StyledButton type="submit">Submit</StyledButton>
+          <StyledButton type="submit" onClick={()=>{   }}>Submit</StyledButton>
         </StyledForm>
       </Formik>
     </div>
