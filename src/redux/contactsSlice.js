@@ -1,7 +1,4 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { getContacts } from './selectors';
-
-
 const contactsInitialState={contacts:[]}
 export const contactsSlice = createSlice({
   name: 'contacts',
@@ -9,17 +6,16 @@ export const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        const{name}=action.payload;
-        const isContactExists = state.contacts.find((contact) => contact.name === name)
-        console.log(action.payload)
+        // const{name}=action.payload;
+        const isContactExists = state.contacts.find((contact) => contact.name === action.payload.text.name)
+      
         if (isContactExists) {
           alert(`Contact with name '${action.payload.text.name}' already exists!`)
         } else {
           state.contacts.push(action.payload);
         }
       
-        // window.localStorage.setItem('contacts', JSON.stringify(state));
-      },
+   },
       prepare(text) {
         return {
           payload: {
@@ -47,4 +43,3 @@ export const contactsSlice = createSlice({
 
 export const { addContact, removeContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
-// const savedContacts = JSON.parse(window.localStorage.getItem('contacts')) ?? [];

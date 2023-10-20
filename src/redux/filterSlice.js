@@ -18,6 +18,6 @@ export const filtersSlice = createSlice({
   }}
 )
 
-export const { addContact, removeContact } = filtersSlice.actions;
+export const { filterByname } = filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer
   
