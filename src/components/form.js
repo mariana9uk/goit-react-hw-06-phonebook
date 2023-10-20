@@ -32,6 +32,7 @@ const validSchema = Yup.object().shape({
 export const ContactForm = () => {
   const dispatch= useDispatch()
 
+
   const handleSubmit = (values, formikBag) => {
     dispatch(addContact(values));
     formikBag.resetForm()
@@ -60,7 +61,7 @@ export const ContactForm = () => {
             <StyledInput type="tel" name="number" placeholder="Type number" />
             <ErrorMessage component={ErrorMessageStyled} name="number" />
           </label>
-          <StyledButton type="submit" onClick={()=>{   }}>Submit</StyledButton>
+          <StyledButton type="submit" >Submit</StyledButton>
         </StyledForm>
       </Formik>
     </div>
