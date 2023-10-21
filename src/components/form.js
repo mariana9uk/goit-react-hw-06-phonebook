@@ -1,4 +1,4 @@
-import { Formik, ErrorMessage} from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import {
   StyledForm,
   StyledInput,
@@ -6,10 +6,8 @@ import {
   ErrorMessageStyled,
 } from './formStyled';
 import * as Yup from 'yup';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
-import { act } from '@testing-library/react';
 
 const validSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,19 +26,16 @@ const validSchema = Yup.object().shape({
     .required('Required'),
 });
 
-
 export const ContactForm = () => {
-  const dispatch= useDispatch()
-
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, formikBag) => {
     dispatch(addContact(values));
-    formikBag.resetForm()
+    formikBag.resetForm();
   };
 
   return (
     <div>
-   
       <Formik
         initialValues={{
           name: '',
@@ -48,7 +43,6 @@ export const ContactForm = () => {
         }}
         validationSchema={validSchema}
         onSubmit={handleSubmit}
-       
       >
         <StyledForm>
           <label>
@@ -61,7 +55,7 @@ export const ContactForm = () => {
             <StyledInput type="tel" name="number" placeholder="Type number" />
             <ErrorMessage component={ErrorMessageStyled} name="number" />
           </label>
-          <StyledButton type="submit" >Submit</StyledButton>
+          <StyledButton type="submit">Submit</StyledButton>
         </StyledForm>
       </Formik>
     </div>
