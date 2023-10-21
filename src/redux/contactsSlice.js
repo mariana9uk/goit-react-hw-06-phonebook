@@ -21,6 +21,7 @@ export const contactsSlice = createSlice({
           payload: {
             text,
             id: nanoid(),
+           
           },
         };
       },
