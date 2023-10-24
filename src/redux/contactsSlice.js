@@ -6,19 +6,11 @@ export const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        const { text } = action.payload;
+       
 
-        const isContactExists = state.contacts.find(
-          contact => contact.name === text
-        );
-
-        if (isContactExists) {
-          alert(
-            `Contact with name '${action.payload.text.name}' already exists!`
-          );
-        } else {
+       
           state.contacts.push(action.payload);
-        }
+        
       },
       prepare(text) {
         return {
